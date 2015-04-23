@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  push_notification_token: MyText
+  device_uuid: MyText
+
+two:
+  push_notification_token: MyText
+  device_uuid: MyText
