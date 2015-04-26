@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150419203116) do
+ActiveRecord::Schema.define(version: 20150425134921) do
 
   create_table "notifications", force: true do |t|
     t.string   "message"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20150419203116) do
     t.integer  "notification_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "status"
   end
 
   create_table "users", force: true do |t|
@@ -31,6 +32,7 @@ ActiveRecord::Schema.define(version: 20150419203116) do
     t.text     "device_uuid"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "time_zone"
   end
 
 end

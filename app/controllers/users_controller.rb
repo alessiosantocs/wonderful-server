@@ -26,6 +26,8 @@ class UsersController < ApplicationController
   def create
     @user = User.find_by_device_uuid(user_params[:device_uuid]) || User.new(user_params)
 
+    @user.time_zone = user_params[:time_zone] if user_params[:time_zone]
+
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
@@ -69,6 +71,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:device_uuid, :push_notification_token)
+      params.require(:user).permit(:device_uuid, :push_notification_token, :time_zone)
     end
 end

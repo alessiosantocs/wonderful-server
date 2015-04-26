@@ -6,7 +6,7 @@ class Notification < ActiveRecord::Base
   after_create :deliver
 
   def deliver
-    users = User.where("push_notification_token IS NOT NULL")
+    users = User.notifiable
 
     users.each do |user|
       user.assign_and_deliver_notification(self)

@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   has_many :user_notifications
   has_many :notifications, through: :user_notifications
 
+  scope :notifiable, lambda {where("users.push_notification_token IS NOT NULL")}
+
   def send_push_notification(message, options={})
     if self.push_notification_token.present? && message.present?
       notification = Houston::Notification.new(device: self.push_notification_token)
