@@ -1,7 +1,36 @@
 
 namespace :notifications do
 
+  # PROBLEM =======
+
+  # The user signs up
+  # Accepts remote notifications and his token is updated
+  # Ready to receive notifications
+
+  # The admin creates notifications to be sent daily to users
+
+  # The user will receive 1 notification in the morning at 8am wherever he is
+  # He will never receive a notification he has already received
+
+  # SOLUTION =======
+
+  # We have
+  # - Users
+  # - Notifications
+  # - UserNotifications # That are basically sent notifications
+
+  # When the user signs up:
+  # - Register the timezone of the user
+
+  # A rake task that:
+  # - For every user:
+  #   - If he did not receive a notification that day
+  #     - If it's around 8am depending on his timezone
+  #       - Selects a Notification to send from the poll that the user hasn't already received
+  #       - Sends it
+  #       - Marks in the database the notification as sent
   desc "This task delivers notifications to users when it's time"
+
   task :deliver_daily_notifications => :environment do
 
     # Constants
@@ -59,30 +88,3 @@ namespace :notifications do
   end
 
 end
-
-# The user signs up
-# Accepts remote notifications and his token is updated
-# Ready to receive notifications
-
-# The admin creates notifications to be sent daily to users
-
-# The user will receive 1 notification in the morning at 8am wherever he is
-# He will never receive a notification he has already received
-
-# SOLUTION
-
-# We have
-# - Users [V]
-# - Notifications [V]
-# - UserNotifications # That are basically sent notifications [V]
-
-# When the user signs up:
-# - Register the timezone of the user [ ]
-
-# A rake task that:
-# - For every user:
-#   - If he did not receive a notification that day
-#     - If it's around 8am depending on his timezone
-#       - Selects a Notification to send from the poll that the user hasn't already received [ ]
-#       - Sends it [ ]
-#       - Marks in the database the notification as sent [ ]

@@ -1,7 +1,23 @@
 # UserNotifications are created and then delivered to users
 class UserNotification < ActiveRecord::Base
+
+  STATUSES = {
+    :SENT => 0,
+    :DELIVERED => 1,
+    :SEND_AGAIN => 2
+  }
+
   belongs_to :user
   belongs_to :notification
+
+  scope :for_user, lambda{|user| where(user_id: user.try(:id) || user )}
+
+
+  def is_loved
+    (self.loved_at?) ? true : false
+  end
+
+  alias_method :is_loved?, :is_loved
 
   def to_push_notification(options={})
 

@@ -5,9 +5,8 @@ class NotificationsController < ApplicationController
   # GET /notifications
   # GET /notifications.json
   def index
-    @notifications = Notification.all
-    @notifications = @user.notifications if @user
-    @notifications = @notifications.order(created_at: :desc)
+    @notifications = Notification.all.order(created_at: :desc)
+    @notifications = @user.notifications.order("user_notifications.created_at DESC") if @user
   end
 
   # GET /notifications/1

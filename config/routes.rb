@@ -3,6 +3,8 @@ WonderfulServer::Application.routes.draw do
 
   resources :users do
     resources :notifications
+
+    resources :user_notifications
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
