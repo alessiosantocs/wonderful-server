@@ -27,6 +27,7 @@ class UsersController < ApplicationController
     @user = User.find_by_id(user_params[:id]) || User.find_by_device_uuid(user_params[:device_uuid]) || User.new(user_params)
 
     @user.time_zone = user_params[:time_zone] if user_params[:time_zone]
+    @user.device_uuid = user_params[:device_uuid] if user_params[:device_uuid]
 
     respond_to do |format|
       if @user.save
