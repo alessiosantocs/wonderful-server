@@ -71,6 +71,11 @@ class NotificationsController < ApplicationController
 
     def set_user
       @user = User.find_by_device_uuid(params[:user_id]) || User.find_by_id(params[:user_id]) if params[:user_id]
+
+      if params[:user_id] && @user.nil?
+        # TODO: Manage exceptions in smart way
+        raise ActiveRecord::RecordNotFound
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
