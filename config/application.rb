@@ -12,9 +12,9 @@ module WonderfulServer
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
-    APN = Houston::Client.development
+    APN = Houston::Client.send(Rails.env.to_sym)
     APN.passphrase = "282701"
-    APN.certificate = File.read("certificates/apple_push_notification.pem")
+    APN.certificate = File.read("certificates/#{Rails.env.to_s}/apple_push_notification.pem")
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
