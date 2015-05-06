@@ -67,7 +67,7 @@ namespace :notifications do
 
           # At least one sendable notification
           if sendable_notifications.any?
-            sample_notification = sendable_notifications.first
+            sample_notification = sendable_notifications.sample
 
             puts " - Sending sample notification ##{sample_notification.id} => #{sample_notification.message}"
             user.assign_and_deliver_notification sample_notification
